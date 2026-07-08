@@ -333,11 +333,13 @@
     Belum ada saham. Tambahkan saham IPO pertamamu di atas.
   </div>
 
-  <div class="footnote">Data disimpan otomatis di akun kamu &middot; harga sekarang diisi manual, bukan data real-time bursa.</div>
+  <div class="footnote" id="saveStatus">Memuat data...</div>
 </div>
 
 <script>
-const STORAGE_KEY = 'stocks-list';
+// GANTI URL DI BAWAH INI dengan URL Web App Apps Script kamu
+const API_URL = 'https://script.google.com/macros/s/AKfycbyhkt600kEoLb5AK-eVNBHvI5vi8KIssE2McKC3qOOQyEhIJElmuOfr_8OCCvD-9pmPdQ/exec';
+
 let stocks = [];
 
 function formatRp(n){
@@ -350,25 +352,47 @@ function formatPct(n){
   return sign + n.toFixed(2) + '%';
 }
 
+function setStatus(msg, isError){
+  const el = document.getElementById('saveStatus');
+  el.textContent = msg;
+  el.style.color = isError ? 'var(--red)' : '';
+}
+
 async function loadStocks(){
   try{
-    const res = await window.storage.get(STORAGE_KEY, false);
-    stocks = res ? JSON.parse(res.value) : [];
+    const res = await fetch(API_URL);
+    const data = await res.json();
+    stocks = data.stocks || [];
+    setStatus('Data tersimpan di Google Sheets kamu · harga sekarang diisi manual, bukan data real-time bursa.', false);
   }catch(e){
     stocks = [];
+    setStatus('Gagal konek ke database. Cek URL Apps Script sudah benar & sudah di-deploy.', true);
   }
   render();
 }
 
-async function saveStocks(){
+async function callApi(payload){
+  setStatus('Menyimpan...', false);
   try{
-    await window.storage.set(STORAGE_KEY, JSON.stringify(stocks), false);
+    const res = await fetch(API_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // hindari CORS preflight
+      body: JSON.stringify(payload)
+    });
+    const data = await res.json();
+    if(!data.ok){
+      setStatus('Gagal menyimpan: ' + (data.error || 'terjadi kesalahan'), true);
+      return null;
+    }
+    setStatus('Tersimpan ✓ · aman untuk refresh atau tutup halaman.', false);
+    return data;
   }catch(e){
-    console.error('Gagal menyimpan data', e);
+    setStatus('Gagal konek ke database. Cek URL Apps Script & koneksi internet.', true);
+    return null;
   }
 }
 
-function addStock(){
+async function addStock(){
   const nameEl = document.getElementById('inName');
   const lotEl = document.getElementById('inLot');
   const buyEl = document.getElementById('inBuy');
@@ -382,35 +406,35 @@ function addStock(){
     return;
   }
 
-  stocks.push({
-    id: Date.now().toString(),
-    name,
-    lot,
-    buy,
-    current: buy
-  });
+  const tempId = 'temp-' + Date.now();
+  stocks.push({ id: tempId, name, lot, buy, current: buy });
+  render();
 
   nameEl.value = '';
   lotEl.value = '';
   buyEl.value = '';
 
-  saveStocks();
-  render();
+  const result = await callApi({ action: 'add', name, lot, buy, current: buy });
+  if(result && result.id){
+    const s = stocks.find(x => x.id === tempId);
+    if(s) s.id = result.id;
+    render();
+  }
 }
 
-function updateCurrent(id, value){
+async function updateCurrent(id, value){
   const s = stocks.find(x => x.id === id);
   if(!s) return;
   const v = parseFloat(value);
   s.current = isNaN(v) ? s.current : v;
-  saveStocks();
   render();
+  await callApi({ action: 'update', id, current: s.current });
 }
 
-function removeStock(id){
+async function removeStock(id){
   stocks = stocks.filter(x => x.id !== id);
-  saveStocks();
   render();
+  await callApi({ action: 'delete', id });
 }
 
 function render(){

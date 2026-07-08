@@ -39,7 +39,6 @@
     padding:20px 16px 60px;
   }
 
-  /* Ticker strip */
   .ticker-strip{
     overflow:hidden;
     white-space:nowrap;
@@ -66,9 +65,7 @@
     100%{transform:translateX(-100%);}
   }
 
-  header{
-    margin-bottom:20px;
-  }
+  header{margin-bottom:20px;}
   h1{
     font-family:var(--font-display);
     font-size:24px;
@@ -79,7 +76,6 @@
   h1 .dot{color:var(--amber);}
   .subtitle{color:var(--muted);font-size:14px;margin-top:6px;line-height:1.4;}
 
-  /* Summary board */
   .summary{
     display:grid;
     grid-template-columns:1fr 1fr;
@@ -101,19 +97,9 @@
     margin-bottom:6px;
     font-weight:600;
   }
-  .summary-value{
-    font-family:var(--font-mono);
-    font-size:22px;
-    font-weight:700;
-  }
-  .summary-sub{
-    font-family:var(--font-mono);
-    font-size:14px;
-    margin-top:4px;
-    font-weight:600;
-  }
+  .summary-value{font-family:var(--font-mono);font-size:22px;font-weight:700;}
+  .summary-sub{font-family:var(--font-mono);font-size:14px;margin-top:4px;font-weight:600;}
 
-  /* Add form */
   .add-card{
     background:var(--surface);
     border:1px solid var(--border);
@@ -130,18 +116,8 @@
     text-transform:uppercase;
     letter-spacing:.04em;
   }
-  .add-grid{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:14px;
-  }
-  label{
-    display:block;
-    font-size:13px;
-    font-weight:600;
-    color:var(--muted);
-    margin-bottom:6px;
-  }
+  .add-grid{display:grid;grid-template-columns:1fr;gap:14px;}
+  label{display:block;font-size:13px;font-weight:600;color:var(--muted);margin-bottom:6px;}
   input{
     width:100%;
     background:var(--surface-2);
@@ -164,14 +140,9 @@
     padding:13px 16px;
     cursor:pointer;
   }
-  .btn-add{
-    background:var(--amber);
-    color:#fff;
-    width:100%;
-  }
+  .btn-add{background:var(--amber);color:#fff;width:100%;}
   .btn-add:active{filter:brightness(.95);}
 
-  /* Holdings list */
   .holding{
     background:var(--surface);
     border:1px solid var(--border);
@@ -179,23 +150,15 @@
     padding:16px;
     margin-bottom:12px;
   }
+  .holding.stop-hit{border-color:var(--red);box-shadow:0 0 0 2px var(--red-bg);}
   .h-top{
     display:flex;
     justify-content:space-between;
     align-items:flex-start;
     margin-bottom:14px;
   }
-  .h-name{
-    font-family:var(--font-display);
-    font-weight:700;
-    font-size:19px;
-  }
-  .h-lot{
-    font-family:var(--font-mono);
-    font-size:13px;
-    color:var(--muted);
-    margin-top:3px;
-  }
+  .h-name{font-family:var(--font-display);font-weight:700;font-size:19px;}
+  .h-lot{font-family:var(--font-mono);font-size:13px;color:var(--muted);margin-top:3px;}
   .del-btn{
     background:transparent;
     color:var(--muted);
@@ -207,12 +170,7 @@
   }
   .del-btn:active{color:var(--red);border-color:var(--red);}
 
-  .h-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:12px;
-    margin-bottom:14px;
-  }
+  .h-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:12px;}
   .field-label{
     font-size:11.5px;
     text-transform:uppercase;
@@ -221,15 +179,8 @@
     margin-bottom:5px;
     font-weight:600;
   }
-  .field-value{
-    font-family:var(--font-mono);
-    font-size:16px;
-    font-weight:600;
-  }
-  .price-input{
-    padding:10px 11px;
-    font-size:16px;
-  }
+  .field-value{font-family:var(--font-mono);font-size:16px;font-weight:600;}
+  .price-input{padding:10px 11px;font-size:16px;}
 
   .delta-box{
     display:flex;
@@ -237,24 +188,62 @@
     align-items:center;
     border-radius:12px;
     padding:12px 14px;
+    margin-bottom:12px;
   }
   .delta-box.up{background:var(--green-bg);}
   .delta-box.down{background:var(--red-bg);}
   .delta-box.flat{background:var(--surface-2);}
-  .delta-pct{
-    font-family:var(--font-mono);
-    font-size:22px;
-    font-weight:700;
-    line-height:1.1;
-  }
-  .delta-rp{
-    font-family:var(--font-mono);
-    font-size:14px;
-    font-weight:600;
-  }
+  .delta-pct{font-family:var(--font-mono);font-size:22px;font-weight:700;line-height:1.1;}
+  .delta-rp{font-family:var(--font-mono);font-size:14px;font-weight:600;}
   .up{color:var(--green);}
   .down{color:var(--red);}
   .flat{color:var(--muted);}
+
+  .stop-panel{
+    border:1.5px dashed var(--border);
+    border-radius:12px;
+    padding:12px 14px;
+  }
+  .stop-panel-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:10px;
+  }
+  .stop-panel-title{
+    font-size:12px;
+    font-weight:700;
+    text-transform:uppercase;
+    letter-spacing:.05em;
+    color:var(--muted);
+  }
+  .stop-tag{
+    font-size:11px;
+    font-weight:700;
+    padding:2px 8px;
+    border-radius:20px;
+    background:var(--amber-bg);
+    color:var(--amber);
+  }
+  .stop-tag.manual{background:var(--surface-2);color:var(--text);}
+  .stop-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;align-items:end;}
+  .stop-price{
+    font-family:var(--font-mono);
+    font-size:17px;
+    font-weight:700;
+  }
+  .stop-alert{
+    margin-top:10px;
+    background:var(--red);
+    color:#fff;
+    font-weight:700;
+    font-size:13.5px;
+    padding:9px 12px;
+    border-radius:8px;
+    text-align:center;
+  }
+  .mini-input{padding:9px 10px;font-size:14.5px;}
+  .mini-label{font-size:11px;color:var(--muted);margin-bottom:4px;font-weight:600;}
 
   .empty{
     text-align:center;
@@ -265,15 +254,8 @@
     font-size:14.5px;
     background:var(--surface);
   }
-  .footnote{
-    color:var(--muted);
-    font-size:12.5px;
-    text-align:center;
-    margin-top:22px;
-    line-height:1.5;
-  }
+  .footnote{color:var(--muted);font-size:12.5px;text-align:center;margin-top:22px;line-height:1.5;}
 
-  /* Larger screens: put holding fields in one row */
   @media (min-width:640px){
     .add-grid{grid-template-columns:1.3fr 1fr 1fr auto;align-items:end;}
     .btn-add{width:auto;}
@@ -290,7 +272,7 @@
 
   <header>
     <h1>Papan Portofolio<span class="dot">.</span></h1>
-    <div class="subtitle">Monitoring saham IPO kamu &mdash; update harga sekarang, lihat untung/rugi langsung.</div>
+    <div class="subtitle">Monitoring saham IPO kamu, lengkap dengan trailing stop otomatis biar profit kejaga.</div>
   </header>
 
   <div class="summary">
@@ -338,7 +320,7 @@
 
 <script>
 // GANTI URL DI BAWAH INI dengan URL Web App Apps Script kamu
-const API_URL = 'https://script.google.com/macros/s/AKfycbyhkt600kEoLb5AK-eVNBHvI5vi8KIssE2McKC3qOOQyEhIJElmuOfr_8OCCvD-9pmPdQ/exec';
+const API_URL = 'https://script.google.com/macros/s/AKfycbyjHA-TuBwh9pe0yg08tXWFQQfF_SS4uUuOM_TqEHhlDOCiDQDcTbD0tmRt0I0GVVtsRQ/exec';
 
 let stocks = [];
 
@@ -358,12 +340,43 @@ function setStatus(msg, isError){
   el.style.color = isError ? 'var(--red)' : '';
 }
 
+// ==== ATURAN TRAILING STOP OTOMATIS ====
+// Makin besar profit, makin ketat trailing stop-nya
+function getAutoStopPct(profitPct){
+  if(profitPct < 20) return 25;
+  if(profitPct < 50) return 20;
+  if(profitPct < 100) return 15;
+  return 10;
+}
+
+function getStopInfo(s){
+  const shares = s.lot * 100;
+  const modalValue = shares * s.buy;
+  const nowValue = shares * s.current;
+  const profitPct = modalValue > 0 ? ((nowValue - modalValue) / modalValue) * 100 : 0;
+  const highest = (s.highest && s.highest > s.current) ? s.highest : s.current;
+  // Tier trailing stop dihitung dari profit TERTINGGI yang pernah dicapai (di harga puncak),
+  // bukan dari profit sekarang - supaya begitu sempat profit besar, level stop tetap ketat
+  // walau harga sudah mulai turun dari puncaknya.
+  const peakProfitPct = s.buy > 0 ? ((highest - s.buy) / s.buy) * 100 : 0;
+  const autoPct = getAutoStopPct(peakProfitPct);
+  const hasManual = s.manualStopPct !== null && s.manualStopPct !== undefined && s.manualStopPct !== '';
+  const usedPct = hasManual ? Number(s.manualStopPct) : autoPct;
+  const stopPrice = highest * (1 - usedPct / 100);
+  const hit = s.current <= stopPrice;
+  return { profitPct, peakProfitPct, highest, autoPct, usedPct, isManual: hasManual, stopPrice, hit };
+}
+
 async function loadStocks(){
   try{
     const res = await fetch(API_URL);
     const data = await res.json();
-    stocks = data.stocks || [];
-    setStatus('Data tersimpan di Google Sheets kamu · harga sekarang diisi manual, bukan data real-time bursa.', false);
+    stocks = (data.stocks || []).map(s => ({
+      ...s,
+      highest: s.highest || s.current,
+      manualStopPct: (s.manualStopPct === '' || s.manualStopPct === undefined) ? null : s.manualStopPct
+    }));
+    setStatus('Data tersimpan di Google Sheets kamu · harga sekarang & trailing stop diisi/diatur manual.', false);
   }catch(e){
     stocks = [];
     setStatus('Gagal konek ke database. Cek URL Apps Script sudah benar & sudah di-deploy.', true);
@@ -376,7 +389,7 @@ async function callApi(payload){
   try{
     const res = await fetch(API_URL, {
       method: 'POST',
-      headers: { 'Content-Type': 'text/plain;charset=utf-8' }, // hindari CORS preflight
+      headers: { 'Content-Type': 'text/plain;charset=utf-8' },
       body: JSON.stringify(payload)
     });
     const data = await res.json();
@@ -407,7 +420,7 @@ async function addStock(){
   }
 
   const tempId = 'temp-' + Date.now();
-  stocks.push({ id: tempId, name, lot, buy, current: buy });
+  stocks.push({ id: tempId, name, lot, buy, current: buy, highest: buy, manualStopPct: null });
   render();
 
   nameEl.value = '';
@@ -426,9 +439,20 @@ async function updateCurrent(id, value){
   const s = stocks.find(x => x.id === id);
   if(!s) return;
   const v = parseFloat(value);
-  s.current = isNaN(v) ? s.current : v;
+  if(isNaN(v)) return;
+  s.current = v;
+  if(v > (s.highest || 0)) s.highest = v;
   render();
   await callApi({ action: 'update', id, current: s.current });
+}
+
+async function setManualStop(id, value){
+  const s = stocks.find(x => x.id === id);
+  if(!s) return;
+  const v = value.trim();
+  s.manualStopPct = v === '' ? null : parseFloat(v);
+  render();
+  await callApi({ action: 'setStop', id, manualStopPct: v === '' ? '' : parseFloat(v) });
 }
 
 async function removeStock(id){
@@ -461,9 +485,10 @@ function render(){
     totalNow += nowValue;
 
     const dir = gainRp > 0 ? 'up' : (gainRp < 0 ? 'down' : 'flat');
+    const stopInfo = getStopInfo(s);
 
     const row = document.createElement('div');
-    row.className = 'holding';
+    row.className = 'holding' + (stopInfo.hit ? ' stop-hit' : '');
     row.innerHTML = `
       <div class="h-top">
         <div>
@@ -490,6 +515,32 @@ function render(){
       <div class="delta-box ${dir}">
         <div class="delta-pct ${dir}">${formatPct(gainPct)}</div>
         <div class="delta-rp ${dir}">${formatRp(gainRp)}</div>
+      </div>
+      <div class="stop-panel">
+        <div class="stop-panel-top">
+          <span class="stop-panel-title">Trailing Stop</span>
+          <span class="stop-tag ${stopInfo.isManual ? 'manual' : ''}">${stopInfo.isManual ? 'Manual' : 'Otomatis'} · ${stopInfo.usedPct}%</span>
+        </div>
+        <div class="stop-row">
+          <div>
+            <div class="mini-label">Harga Tertinggi (profit puncak ${formatPct(stopInfo.peakProfitPct)})</div>
+            <div class="field-value">${formatRp(stopInfo.highest)}</div>
+          </div>
+          <div>
+            <div class="mini-label">Harga Stop (jual jika turun ke sini)</div>
+            <div class="stop-price ${stopInfo.hit ? 'down' : ''}">${formatRp(stopInfo.stopPrice)}</div>
+          </div>
+        </div>
+        <div class="stop-row" style="margin-top:10px;">
+          <div>
+            <div class="mini-label">Override manual % (kosongkan utk otomatis)</div>
+            <input class="mini-input" type="number" min="1" max="90" step="1"
+              placeholder="${stopInfo.autoPct}"
+              value="${stopInfo.isManual ? stopInfo.usedPct : ''}"
+              onchange="setManualStop('${s.id}', this.value)">
+          </div>
+        </div>
+        ${stopInfo.hit ? '<div class="stop-alert">⚠️ HARGA SUDAH MENYENTUH TRAILING STOP — pertimbangkan jual</div>' : ''}
       </div>
     `;
     list.appendChild(row);

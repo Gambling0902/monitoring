@@ -2,38 +2,41 @@
 <html lang="id">
 <head>
 <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
 <title>Papan Portofolio</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#0A0F1C;
-    --surface:#121A2B;
-    --surface-2:#182238;
-    --border:#243352;
-    --text:#E7ECF6;
-    --muted:#7E8BA8;
-    --green:#22C55E;
-    --green-dim:#1B7A3E;
-    --red:#F0466A;
-    --red-dim:#8A2740;
-    --amber:#F5B942;
+    --bg:#F7F8FB;
+    --surface:#FFFFFF;
+    --surface-2:#F0F2F7;
+    --border:#E1E5EE;
+    --text:#141B2E;
+    --muted:#6B7690;
+    --green:#0F9D58;
+    --green-bg:#E7F7EE;
+    --red:#E0294B;
+    --red-bg:#FCE8ED;
+    --amber:#C77D00;
+    --amber-bg:#FDF1DC;
     --font-display:'Space Grotesk',sans-serif;
     --font-body:'Inter',sans-serif;
     --font-mono:'JetBrains Mono',monospace;
   }
-  *{box-sizing:border-box;}
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
   body{
     margin:0;
     background:var(--bg);
     color:var(--text);
     font-family:var(--font-body);
     -webkit-font-smoothing:antialiased;
+    font-size:16px;
   }
   .wrap{
     max-width:920px;
     margin:0 auto;
-    padding:28px 20px 60px;
+    padding:20px 16px 60px;
   }
 
   /* Ticker strip */
@@ -42,20 +45,20 @@
     white-space:nowrap;
     border-bottom:1px solid var(--border);
     background:var(--surface);
-    padding:9px 0;
-    margin:-28px -20px 26px;
+    padding:10px 0;
+    margin:-20px -16px 22px;
     mask-image:linear-gradient(90deg,transparent,black 4%,black 96%,transparent);
   }
   .ticker-track{
     display:inline-block;
     padding-left:100%;
-    animation:scroll-left 28s linear infinite;
+    animation:scroll-left 24s linear infinite;
     font-family:var(--font-mono);
-    font-size:12.5px;
+    font-size:14px;
     letter-spacing:.02em;
   }
-  .ticker-track span{margin-right:34px;color:var(--muted);}
-  .ticker-track span b{color:var(--text);font-weight:600;}
+  .ticker-track span{margin-right:30px;color:var(--muted);}
+  .ticker-track span b{color:var(--text);font-weight:700;}
   .t-up{color:var(--green)!important;}
   .t-down{color:var(--red)!important;}
   @keyframes scroll-left{
@@ -64,208 +67,219 @@
   }
 
   header{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-end;
-    margin-bottom:22px;
-    flex-wrap:wrap;
-    gap:14px;
+    margin-bottom:20px;
   }
   h1{
     font-family:var(--font-display);
-    font-size:26px;
+    font-size:24px;
     font-weight:700;
     margin:0;
     letter-spacing:-.01em;
   }
   h1 .dot{color:var(--amber);}
-  .subtitle{color:var(--muted);font-size:13px;margin-top:4px;}
+  .subtitle{color:var(--muted);font-size:14px;margin-top:6px;line-height:1.4;}
 
   /* Summary board */
   .summary{
     display:grid;
-    grid-template-columns:repeat(3,1fr);
-    gap:1px;
-    background:var(--border);
-    border:1px solid var(--border);
-    border-radius:14px;
-    overflow:hidden;
-    margin-bottom:22px;
+    grid-template-columns:1fr 1fr;
+    gap:10px;
+    margin-bottom:20px;
   }
   .summary-cell{
     background:var(--surface);
-    padding:16px 18px;
+    border:1px solid var(--border);
+    border-radius:14px;
+    padding:16px;
   }
+  .summary-cell.wide{grid-column:1 / -1;}
   .summary-label{
-    font-size:11px;
+    font-size:12px;
     text-transform:uppercase;
-    letter-spacing:.08em;
+    letter-spacing:.06em;
     color:var(--muted);
     margin-bottom:6px;
+    font-weight:600;
   }
   .summary-value{
     font-family:var(--font-mono);
-    font-size:19px;
-    font-weight:600;
+    font-size:22px;
+    font-weight:700;
   }
   .summary-sub{
     font-family:var(--font-mono);
-    font-size:12px;
+    font-size:14px;
     margin-top:4px;
+    font-weight:600;
   }
 
   /* Add form */
   .add-card{
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:14px;
+    border-radius:16px;
     padding:18px;
-    margin-bottom:24px;
+    margin-bottom:20px;
   }
   .add-title{
     font-family:var(--font-display);
     font-size:14px;
-    font-weight:600;
-    margin:0 0 12px;
-    color:var(--muted);
+    font-weight:700;
+    margin:0 0 14px;
+    color:var(--text);
     text-transform:uppercase;
-    letter-spacing:.06em;
+    letter-spacing:.04em;
   }
   .add-grid{
     display:grid;
-    grid-template-columns:1.4fr 1fr 1fr auto;
-    gap:10px;
-  }
-  @media (max-width:640px){
-    .add-grid{grid-template-columns:1fr 1fr;}
-    .summary{grid-template-columns:1fr;}
+    grid-template-columns:1fr;
+    gap:14px;
   }
   label{
     display:block;
-    font-size:11px;
+    font-size:13px;
+    font-weight:600;
     color:var(--muted);
-    margin-bottom:5px;
+    margin-bottom:6px;
   }
   input{
     width:100%;
     background:var(--surface-2);
-    border:1px solid var(--border);
+    border:1.5px solid var(--border);
     color:var(--text);
     font-family:var(--font-mono);
-    font-size:14px;
-    padding:9px 10px;
-    border-radius:8px;
+    font-size:17px;
+    padding:13px 12px;
+    border-radius:10px;
     outline:none;
   }
   input:focus{border-color:var(--amber);}
-  input::placeholder{color:#4C5A7A;}
+  input::placeholder{color:#A2ABC2;}
   button{
     font-family:var(--font-body);
-    font-weight:600;
-    font-size:13px;
+    font-weight:700;
+    font-size:15px;
     border:none;
-    border-radius:8px;
-    padding:9px 16px;
+    border-radius:10px;
+    padding:13px 16px;
     cursor:pointer;
   }
   .btn-add{
     background:var(--amber);
-    color:#1A1200;
-    align-self:end;
+    color:#fff;
+    width:100%;
   }
-  .btn-add:hover{filter:brightness(1.08);}
+  .btn-add:active{filter:brightness(.95);}
 
   /* Holdings list */
   .holding{
     background:var(--surface);
     border:1px solid var(--border);
-    border-radius:14px;
-    padding:16px 18px;
+    border-radius:16px;
+    padding:16px;
     margin-bottom:12px;
-    display:grid;
-    grid-template-columns:1.3fr .8fr .9fr .9fr 1fr auto;
-    gap:14px;
-    align-items:center;
   }
-  @media (max-width:800px){
-    .holding{grid-template-columns:1fr 1fr;}
+  .h-top{
+    display:flex;
+    justify-content:space-between;
+    align-items:flex-start;
+    margin-bottom:14px;
   }
   .h-name{
     font-family:var(--font-display);
     font-weight:700;
-    font-size:16px;
+    font-size:19px;
   }
   .h-lot{
     font-family:var(--font-mono);
-    font-size:12px;
+    font-size:13px;
     color:var(--muted);
-    margin-top:2px;
+    margin-top:3px;
+  }
+  .del-btn{
+    background:transparent;
+    color:var(--muted);
+    border:1.5px solid var(--border);
+    padding:8px 12px;
+    font-size:13px;
+    border-radius:10px;
+    white-space:nowrap;
+  }
+  .del-btn:active{color:var(--red);border-color:var(--red);}
+
+  .h-grid{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:12px;
+    margin-bottom:14px;
   }
   .field-label{
-    font-size:10.5px;
+    font-size:11.5px;
     text-transform:uppercase;
-    letter-spacing:.06em;
+    letter-spacing:.05em;
     color:var(--muted);
-    margin-bottom:4px;
+    margin-bottom:5px;
+    font-weight:600;
   }
   .field-value{
     font-family:var(--font-mono);
-    font-size:14.5px;
+    font-size:16px;
+    font-weight:600;
   }
   .price-input{
-    padding:7px 9px;
-    font-size:14px;
+    padding:10px 11px;
+    font-size:16px;
   }
+
   .delta-box{
-    text-align:right;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-radius:12px;
+    padding:12px 14px;
   }
+  .delta-box.up{background:var(--green-bg);}
+  .delta-box.down{background:var(--red-bg);}
+  .delta-box.flat{background:var(--surface-2);}
   .delta-pct{
     font-family:var(--font-mono);
-    font-size:19px;
+    font-size:22px;
     font-weight:700;
     line-height:1.1;
   }
   .delta-rp{
     font-family:var(--font-mono);
-    font-size:12px;
-    margin-top:2px;
+    font-size:14px;
+    font-weight:600;
   }
   .up{color:var(--green);}
   .down{color:var(--red);}
   .flat{color:var(--muted);}
-  .badge{
-    display:inline-block;
-    font-size:9.5px;
-    font-weight:700;
-    letter-spacing:.05em;
-    padding:2px 6px;
-    border-radius:5px;
-    margin-left:8px;
-    vertical-align:middle;
-  }
-  .badge-up{background:rgba(34,197,94,.15);color:var(--green);}
-  .badge-down{background:rgba(240,70,106,.15);color:var(--red);}
-  .del-btn{
-    background:transparent;
-    color:var(--muted);
-    border:1px solid var(--border);
-    padding:6px 10px;
-    font-size:12px;
-  }
-  .del-btn:hover{color:var(--red);border-color:var(--red);}
+
   .empty{
     text-align:center;
     color:var(--muted);
-    padding:40px 20px;
-    border:1px dashed var(--border);
-    border-radius:14px;
-    font-size:13.5px;
+    padding:36px 20px;
+    border:1.5px dashed var(--border);
+    border-radius:16px;
+    font-size:14.5px;
+    background:var(--surface);
   }
   .footnote{
     color:var(--muted);
-    font-size:11.5px;
+    font-size:12.5px;
     text-align:center;
     margin-top:22px;
+    line-height:1.5;
+  }
+
+  /* Larger screens: put holding fields in one row */
+  @media (min-width:640px){
+    .add-grid{grid-template-columns:1.3fr 1fr 1fr auto;align-items:end;}
+    .btn-add{width:auto;}
+    .h-grid{grid-template-columns:1fr 1fr 1fr;}
+    .summary{grid-template-columns:1fr 1fr 1fr;}
+    .summary-cell.wide{grid-column:auto;}
   }
 </style>
 </head>
@@ -275,10 +289,8 @@
   <div class="ticker-strip"><div class="ticker-track" id="tickerTrack"></div></div>
 
   <header>
-    <div>
-      <h1>Papan Portofolio<span class="dot">.</span></h1>
-      <div class="subtitle">Monitoring saham IPO kamu &mdash; update harga sekarang, lihat untung/rugi langsung.</div>
-    </div>
+    <h1>Papan Portofolio<span class="dot">.</span></h1>
+    <div class="subtitle">Monitoring saham IPO kamu &mdash; update harga sekarang, lihat untung/rugi langsung.</div>
   </header>
 
   <div class="summary">
@@ -290,7 +302,7 @@
       <div class="summary-label">Nilai Sekarang</div>
       <div class="summary-value" id="sumNow">Rp 0</div>
     </div>
-    <div class="summary-cell">
+    <div class="summary-cell wide">
       <div class="summary-label">Untung / Rugi</div>
       <div class="summary-value" id="sumGain">Rp 0</div>
       <div class="summary-sub" id="sumGainPct">0.00%</div>
@@ -306,13 +318,13 @@
       </div>
       <div>
         <label>Jumlah Lot</label>
-        <input id="inLot" type="number" min="0" step="1" placeholder="1">
+        <input id="inLot" type="number" min="0" step="1" placeholder="1" inputmode="numeric">
       </div>
       <div>
         <label>Harga Beli /lembar (Rp)</label>
-        <input id="inBuy" type="number" min="0" step="1" placeholder="1000">
+        <input id="inBuy" type="number" min="0" step="1" placeholder="1000" inputmode="numeric">
       </div>
-      <button class="btn-add" onclick="addStock()">+ Tambah</button>
+      <button class="btn-add" onclick="addStock()">+ Tambah Saham</button>
     </div>
   </div>
 
@@ -425,34 +437,36 @@ function render(){
     totalNow += nowValue;
 
     const dir = gainRp > 0 ? 'up' : (gainRp < 0 ? 'down' : 'flat');
-    const badgeClass = gainRp > 0 ? 'badge-up' : (gainRp < 0 ? 'badge-down' : '');
-    const arrow = gainRp > 0 ? '▲' : (gainRp < 0 ? '▼' : '·');
 
     const row = document.createElement('div');
     row.className = 'holding';
     row.innerHTML = `
-      <div>
-        <div class="h-name">${s.name}${gainRp !== 0 ? `<span class="badge ${badgeClass}">${arrow} ${Math.abs(gainPct).toFixed(1)}%</span>` : ''}</div>
-        <div class="h-lot">${s.lot} lot &middot; ${shares.toLocaleString('id-ID')} lembar</div>
+      <div class="h-top">
+        <div>
+          <div class="h-name">${s.name}</div>
+          <div class="h-lot">${s.lot} lot &middot; ${shares.toLocaleString('id-ID')} lembar</div>
+        </div>
+        <button class="del-btn" onclick="removeStock('${s.id}')">Hapus</button>
       </div>
-      <div>
-        <div class="field-label">Harga Beli</div>
-        <div class="field-value">${formatRp(s.buy)}</div>
+      <div class="h-grid">
+        <div>
+          <div class="field-label">Harga Beli</div>
+          <div class="field-value">${formatRp(s.buy)}</div>
+        </div>
+        <div>
+          <div class="field-label">Harga Sekarang</div>
+          <input class="price-input" type="number" min="0" step="1" value="${s.current}" inputmode="numeric"
+            onchange="updateCurrent('${s.id}', this.value)">
+        </div>
+        <div>
+          <div class="field-label">Nilai Sekarang</div>
+          <div class="field-value">${formatRp(nowValue)}</div>
+        </div>
       </div>
-      <div>
-        <div class="field-label">Harga Sekarang</div>
-        <input class="price-input" type="number" min="0" step="1" value="${s.current}"
-          onchange="updateCurrent('${s.id}', this.value)">
-      </div>
-      <div>
-        <div class="field-label">Nilai Sekarang</div>
-        <div class="field-value">${formatRp(nowValue)}</div>
-      </div>
-      <div class="delta-box">
+      <div class="delta-box ${dir}">
         <div class="delta-pct ${dir}">${formatPct(gainPct)}</div>
         <div class="delta-rp ${dir}">${formatRp(gainRp)}</div>
       </div>
-      <button class="del-btn" onclick="removeStock('${s.id}')">Hapus</button>
     `;
     list.appendChild(row);
   });
